@@ -1,0 +1,62 @@
+﻿@model PurchaseProductViewModel
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="row justify-content-center align-items-start p-5">
+
+    <div class="col-md-6 p-4 border-end border-2">
+        <div class="card border-0">
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="~/images/@Model.Product.HeaderImage" class="d-block w-100" height="500px">
+                    </div>
+                    @foreach (var img in Model.Product.Images)
+                    {
+                        <div class="carousel-item">
+                            <img src="~/images/@img" class="d-block w-100" height="500px">
+                        </div>
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="card-body mt-5">
+                <h5 class="card-title fw-bold">@Model.Product.Name</h5>
+                <h5 class="card-text fw-bold">@Model.Product.Description</h5>
+                <h5 class="card-text fw-bold">@Model.Product.Price EGP</h5>
+                <h5 class="card-text fw-bold border-bottom pb-3">Specifications : </h5>
+                <h6 class="my-3"><span class="fw-bold text-info fs-5 me-5 ">Brand : </span>@Model.Product.Brand</h6>
+                <h6 class="my-3"><span class="fw-bold text-info fs-5 me-5 ">Model : </span>@Model.Product.Name</h6>
+                <h6 class="my-3"><span class="fw-bold text-info fs-5 me-5 ">Storage : </span>@Model.Product.Storage</h6>
+                <h6 class="my-3"><span class="fw-bold text-info fs-5 me-5 ">Color : </span>@Model.Product.Colors</h6>
+                <h6 class="my-3"><span class="fw-bold text-info fs-5 me-5 ">Display : </span>@Model.Product.Display</h6>
+                <h6 class="my-3"><span class="fw-bold text-info fs-5 me-5 ">Processor : </span>@Model.Product.Processor</h6>
+                <h6 class="my-3"><span class="fw-bold text-info fs-5 me-5 ">RAM : </span>@Model.Product.Ram</h6>
+                <h6 class="my-3"><span class="fw-bold text-info fs-5 me-5 ">Camera : </span>@Model.Product.Camera</h6>
+                <h6 class="my-3"><span class="fw-bold text-info fs-5 me-5 ">Battery : </span>@Model.Product.Battery</h6>
+                <h6 class="my-3"><span class="fw-bold text-info fs-5 me-5 ">OS : </span>@Model.Product.Os</h6>
+                <h6 class="my-3"><span class="fw-bold text-info fs-5 me-5 ">Weight : </span>@Model.Product.Weight</h6>
+                <h6 class="my-3"><span class="fw-bold text-info fs-5 me-5 ">Dimensions : </span>@Model.Product.Dimensions</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 px-4"><partial name="BuyerDetails" model="Model.Buyer" /></div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

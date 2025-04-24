@@ -1,0 +1,120 @@
+﻿@model CreateProductViewModel
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_SallerLayout.cshtml";
+}
+
+<div class="row justify-content-center align-content-center">
+
+    <div class="col-md-9">
+        <h3 class="fw-bolder text-bg-secondary rounded-2 p-2 text-center m-5">Add New Product</h3>
+        <form asp-action="Add" class="bg-body-tertiary p-4 m-5 rounded-5"  enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger fw-bold"></div>
+            <div class="mb-3 px-3">
+                <label for="ProductName" class="form-label fw-bold">Product Name</label>
+                <input asp-for="ProductName" class="form-control" placeholder="@Html.DisplayNameFor(m => m.ProductName)">
+                <span asp-validation-for="ProductName" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3 px-3">
+                <label for="Brand" class="form-label fw-bold">Brand</label>
+                <input asp-for="Brand" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Brand)">
+                <span asp-validation-for="Brand" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3 px-3">
+                <label for="Price" class="form-label fw-bold">Price</label>
+                <input asp-for="Price" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Price)">
+                <span asp-validation-for="Price" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3 px-3">
+                <label for="Description" class="form-label fw-bold">Description</label>
+                <input asp-for="Description" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Description)">
+                <span asp-validation-for="Description" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3 px-3">
+                <label for="Quantity" class="form-label fw-bold">Quantity</label>
+                <input asp-for="Quantity" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Quantity)">
+                <span asp-validation-for="Quantity" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3 px-3">
+                <label for="HeaderImage" class="form-label fw-bold">Header Image</label>
+                <input asp-for="HeaderImage" class="form-control" placeholder="@Html.DisplayNameFor(m => m.HeaderImage)">
+                <span asp-validation-for="HeaderImage" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3 px-3">
+                <label for="Images" class="form-label fw-bold">Images</label>
+                <input asp-for="Images" class="form-control">
+                <span asp-validation-for="Images" class="form-text text-danger"></span>
+            </div>
+
+            <div class="bg-body rounded-3 shadow-lg p-3 m-2">
+                <h4 class="fw-bolder text-bg-secondary p-2 text-center rounded-2">Technical Specifications</h4>
+                <div class="d-flex justify-content-center px-3">
+                    <div class="mb-3 w-50">
+                        <label for="Weight" class="form-label fw-bold">Weight (grams)</label>
+                        <input asp-for="Weight" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Weight)">
+                        <span asp-validation-for="Weight" class="form-text text-danger"></span>
+                    </div>
+                    <div class="mb-3 w-50">
+                        <label for="Dimensions" class="form-label fw-bold">Dimensions (mm)</label>
+                        <input asp-for="Dimensions" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Dimensions)">
+                        <span asp-validation-for="Dimensions" class="form-text text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center px-3">
+                    <div class="mb-3 w-50">
+                        <label for="Processor" class="form-label fw-bold">Processor</label>
+                        <input asp-for="Processor" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Processor)">
+                        <span asp-validation-for="Processor" class="form-text text-danger"></span>
+                    </div>
+                    <div class="mb-3 w-50">
+                        <label for="RAM" class="form-label fw-bold">RAM (GB)</label>
+                        <input asp-for="RAM" class="form-control" placeholder="@Html.DisplayNameFor(m => m.RAM)">
+                        <span asp-validation-for="RAM" class="form-text text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center px-3">
+                    <div class="mb-3 w-50">
+                        <label for="StorageOptions" class="form-label fw-bold">Storage Options</label>
+                        <input asp-for="StorageOptions" class="form-control" placeholder="@Html.DisplayNameFor(m => m.StorageOptions)">
+                        <span asp-validation-for="StorageOptions" class="form-text text-danger"></span>
+                    </div>
+                    <div class="mb-3 w-50">
+                        <label for="OperatingSystem" class="form-label fw-bold">Operating System</label>
+                        <input asp-for="OperatingSystem" class="form-control" placeholder="@Html.DisplayNameFor(m => m.OperatingSystem)">
+                        <span asp-validation-for="OperatingSystem" class="form-text text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center px-3">
+                    <div class="mb-3 w-50">
+                        <label for="Camera" class="form-label fw-bold">Camera (MP)</label>
+                        <input asp-for="Camera" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Camera)">
+                        <span asp-validation-for="Camera" class="form-text text-danger"></span>
+                    </div>
+                    <div class="mb-3 w-50">
+                        <label for="Battery" class="form-label fw-bold">Battery (mAh)</label>
+                        <input asp-for="Battery" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Battery)">
+                        <span asp-validation-for="Battery" class="form-text text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 px-3">
+                    <label for="Display" class="form-label fw-bold">Display</label>
+                    <input asp-for="Display" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Display)">
+                    <span asp-validation-for="Display" class="form-text text-danger"></span>
+                </div>
+                <div class="mb-3 px-3">
+                    <label for="AvailableColors" class="form-label fw-bold">Available Colors</label>
+                    <input asp-for="AvailableColors" class="form-control" placeholder="@Html.DisplayNameFor(m => m.AvailableColors)">
+                    <span asp-validation-for="AvailableColors" class="form-text text-danger"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-dark w-100 m-2 fw-bolder fs-6">Add Product</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

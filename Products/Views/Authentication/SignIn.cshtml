@@ -1,0 +1,40 @@
+﻿@model LogInViewModel
+@{
+    ViewData["Title"] = "SignIn";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="row justify-content-center align-content-center">
+
+    <div class="col-md-9 bg-body rounded-3 shadow-lg p-3 m-2">
+        <form asp-action="SignIn" class="bg-body-tertiary p-4 m-5 rounded-5" enctype="multipart/form-data" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger fw-bold"></div>
+            <div class="mb-3 px-3">
+                <label for="Email" class="form-label fw-bold">Email</label>
+                <input asp-for="Email" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Email)">
+                <span asp-validation-for="Email" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3 px-3">
+                <label for="Password" class="form-label fw-bold">Password</label>
+                <input asp-for="Password" class="form-control" placeholder="@Html.DisplayNameFor(m => m.Password)">
+                <span asp-validation-for="Password" class="form-text text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="RememberMe">
+                        <input asp-for="RememberMe" />
+                        @Html.DisplayNameFor(m => m.RememberMe)
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark w-100 m-2 fw-bolder fs-6">SignIn</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
