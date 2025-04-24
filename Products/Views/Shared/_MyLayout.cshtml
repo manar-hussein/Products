@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+    @inject IHttpContextAccessor _httpContextAccessor
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -33,12 +37,21 @@
                         <li class="nav-item">
                             <a class="nav-link fs-6 mx-3 px-3" href="#">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link fs-6 mx-3 px-3" href="/Authentication/SignIn">Login As Saller</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fs-6 mx-3 px-3" href="/Authentication/Register">Rgister As Saller</a>
-                        </li>
+                        @if (_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link fs-6 mx-3 px-3" href="/Saller/Index">Dashboard</a>
+                            </li>
+                        }else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link fs-6 mx-3 px-3" href="/Authentication/SignIn">Login As Saller</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-6 mx-3 px-3" href="/Authentication/Register">Rgister As Saller</a>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>
