@@ -8,12 +8,12 @@
     @foreach(var item in Model.values)
     {
         <div class="col-md-3 p-4 my-3">
-            <div class="card shadow-lg rounded-3">
+            <div class="card shadow-lg rounded-3 overflow-hidden" style="height:380px">
                 <img src="~/images/@item.HeaderImage" class="card-img-top" height="200px">
                 <div class="card-body">
-                    <h5 class="card-title">@item.Name</h5>
-                    <p class="card-text">@item.Description</p>
-                    <p class="text-info">@item.Price EGP</p>
+                    <h5 class="card-title my-0 py-1">@item.Name</h5>
+                    <p class="card-text m-0 p-0">@item.Description</p>
+                    <p class="text-info m-0 p-0">@item.Price EGP</p>
                     @if(item.IsBought)
                     {
                         <span class="text-danger fw-bold w-100">Out Of Stock</span>
