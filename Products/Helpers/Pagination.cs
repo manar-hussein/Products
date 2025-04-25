@@ -6,16 +6,26 @@ namespace Products.Helpers
     {
         public static async Task<PaginationResult<T>> Paginate<T>(this IQueryable<T> values, int index, int size = 5)
         {
-            var result = new PaginationResult<T>();
-            result.TotalRecords = await values.CountAsync();
-            if (result.TotalRecords == 0)
-                return result;
-            result.CurrentPage = index > 0 ? index : 1;
-            result.Size = size > 0 && size < result.TotalRecords ? size : result.TotalRecords;
-            result.TotalPages = (int)Math.Ceiling(((decimal)result.TotalRecords / result.Size));
-            var numberOfExcluded = (result.CurrentPage - 1) * result.Size;
-            result.values = await values.Skip(numberOfExcluded).Take(size).ToListAsync();
-            return result;
+            var totalEntities = await values.CountAsync();
+            if (totalEntities == 0)
+            {
+                return new PaginationResult<T>();
+            }
+            size = size > 0 ? size : 10;
+            size = size > totalEntities ? totalEntities : size;
+            index = index > 0 ? index : 1;
+            var totalPages = (int)Math.Ceiling((decimal)totalEntities / size);
+            var currentIndex = index > totalPages ? totalPages : index;
+            var numberOfExcluded = (currentIndex - 1) * size;
+            var result = await values.Skip(numberOfExcluded).Take(size).ToListAsync();
+            return new PaginationResult<T>
+            {
+                Size = size,
+                CurrentPage = currentIndex,
+                TotalPages = totalPages,
+                TotalRecords = totalEntities,
+                values = result
+            };
         }
     }
 }
