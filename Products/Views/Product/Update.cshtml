@@ -10,7 +10,8 @@
     <div class="col-md-9">
         <h3 class="fw-bolder text-bg-secondary rounded-2 p-2 text-center m-5">Update Product</h3>
         <form asp-action="Update" class="bg-body-tertiary p-4 m-5 rounded-5" enctype="multipart/form-data" enctype="multipart/form-data">
-            <div asp-validation-summary="All" class="text-danger fw-bold"></div>
+           @*  <div asp-validation-summary="All" class="text-danger fw-bold"></div> *@
+
             <input  type="hidden" asp-for="Id"/>
             <div class="mb-3 px-3">
                 <label for="ProductName" class="form-label fw-bold">Product Name</label>
@@ -129,13 +130,15 @@
                     <span asp-validation-for="AvailableColors" class="form-text text-danger"></span>
                 </div>
                 <div class="mb-3 px-3">
-                    <label for="NumberOfExisitItems" class="form-label fw-bold">Number Of Exisit Items</label>
-                    <input readonly disabled asp-for="NumberOfExisitItems" class="form-control" placeholder="@Html.DisplayNameFor(m => m.NumberOfExisitItems)">
+                    <label for="NumOfSoldItems" class="form-label fw-bold">Num Of Sold Items</label>
+                    <input readonly asp-for="NumOfSoldItems" class="form-control" placeholder="@Html.DisplayNameFor(m => m.NumOfSoldItems)">
+                    <span asp-validation-for="NumOfSoldItems" class="form-text text-danger"></span>
                 </div>
             </div>
-
-            <button type="submit" class="btn btn-danger w-100 m-2 fw-bolder fs-6">Update Product</button>
-            <a asp-action="Index" asp-controller="Saller" class="btn btn-info w-100 m-2 fw-bolder fs-6">Back</a>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary px-4 m-2 fw-bolder fs-6">Save</button>
+                <a asp-action="Index" asp-controller="Saller" class="btn btn-danger px-4 m-2 fw-bolder fs-6">Cancel</a>
+            </div>
         </form>
     </div>
 </div>
@@ -150,32 +153,5 @@
 <script src="~/lib/jquery/dist/jquery.slim.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.slim.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
-<script>
 
-    var Quantity = $("#Quantity");
-    var oldQuantity = Quantity.val();
-    console.log(oldQuantity);
-    var NumberOfExisitItems = $("#NumberOfExisitItems");
-    var oldExsistItems =  NumberOfExisitItems.val();
-    console.log(oldExsistItems);
-    Quantity.on('keyup',()=>
-    {
-        if(Quantity.val() > oldQuantity)
-        {
-            NumberOfExisitItems.text = oldExsistItems + Quantity;
-            console.log(NumberOfExisitItems.val());
-            console.log(oldExsistItems);
-        }
-         else if(Quantity.val() < oldQuantity)
-        {
-            NumberOfExisitItems.val = oldExsistItems -Quantity.val();
-            if(NumberOfExisitItems < 0)
-            {
-
-            }
-            console.log(NumberOfExisitItems.val());
-            console.log(oldExsistItems);
-        }
-    })
-</script>
 

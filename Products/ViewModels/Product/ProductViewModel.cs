@@ -22,6 +22,6 @@
         public int NumberOfExisitItems { get; set; }
         public int Quantity { get; set; }
         public string HeaderImage { get; set; } = null!;
-
+        public int NumOfSoldItems { get; set; }
     }
 }

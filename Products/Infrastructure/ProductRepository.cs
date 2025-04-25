@@ -22,17 +22,18 @@ namespace Products.Infrastructure
 
         public IQueryable<Product> Products()
         {
-            return _Products;
+            return _Products.AsNoTracking();
         }
         public async Task<Product> ProductAsync(int id)
         {
             return await _Products.SingleOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<bool> UpdateAsync(Product product)
+        public bool Update(Product product)
         {
             var isChanged = true;
-            _ApplicationContext.Update(product);
+            //_ApplicationContext.Update(product);
+            _ApplicationContext.Entry(product).State = EntityState.Modified;
             isChanged = true;
             return isChanged;
         }
@@ -55,6 +56,13 @@ namespace Products.Infrastructure
         public async Task Save()
         {
             await _ApplicationContext.SaveChangesAsync();
+        }
+
+        public async Task<Product?> ProductWithoutTrackingAsync(int id)
+        {
+            var oldProduct = await _Products.AsNoTracking()
+                                      .SingleOrDefaultAsync(p => p.Id == id);
+            return oldProduct;
         }
 
     }

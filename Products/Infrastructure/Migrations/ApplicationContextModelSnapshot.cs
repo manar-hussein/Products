@@ -312,7 +312,7 @@ namespace Products.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NumberOfExisitItems")
+                    b.Property<int>("NumOfSoldItems")
                         .HasColumnType("int");
 
                     b.Property<string>("Os")

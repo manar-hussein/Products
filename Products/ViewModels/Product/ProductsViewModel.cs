@@ -9,8 +9,8 @@
         public double Price { get; set; }
         public bool IsBought { get; set; }
         public string Brand { get; set; } = null!;
-        public int NumberOfExisitItems { get; set; }
         public int Quantity { get; set; }
+        public int NumOfSoldItems { get; set; }
 
     }
 }

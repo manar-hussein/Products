@@ -26,18 +26,17 @@
             {
                 decimal precentage;
                 string barColor = "";
-                var numOfSoldItem = pro.Quantity - pro.NumberOfExisitItems;
-                if(pro.NumberOfExisitItems == 0)
+                if(pro.NumOfSoldItems == 0)
+                {
+                    precentage = 00.0m;
+                    barColor = "bg-danger";
+                }else if(pro.NumOfSoldItems == pro.Quantity)
                 {
                     precentage = 100.0m;
                     barColor = "bg-success";
-                }else if(pro.NumberOfExisitItems == pro.Quantity)
-                {
-                    precentage = 0.0m;
-                    barColor = "bg-danger";
                 }else
                 {
-                    precentage = ((decimal)pro.NumberOfExisitItems / pro.Quantity) * 100.0m;
+                    precentage = ((decimal)pro.NumOfSoldItems / pro.Quantity) * 100.0m;
                     if (precentage < 35)
                         barColor = "bg-danger";
                     if (precentage >= 35 && precentage <= 75)
@@ -51,7 +50,7 @@
                     <td>@pro.Brand</td>
                     <td>@pro.Price</td>
                     <td>@pro.Quantity</td>
-                    <td>@numOfSoldItem</td>
+                    <td>@pro.NumOfSoldItems</td>
                     <td>
                         <div class="progress">
                             <div class="progress-bar @barColor" role="progressbar" style="width: @precentage%" aria-valuenow="@precentage" aria-valuemin="0" aria-valuemax="100">@precentage</div>

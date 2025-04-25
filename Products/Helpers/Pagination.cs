@@ -8,6 +8,8 @@ namespace Products.Helpers
         {
             var result = new PaginationResult<T>();
             result.TotalRecords = await values.CountAsync();
+            if (result.TotalRecords == 0)
+                return result;
             result.CurrentPage = index > 0 ? index : 1;
             result.Size = size > 0 && size < result.TotalRecords ? size : result.TotalRecords;
             result.TotalPages = (int)Math.Ceiling(((decimal)result.TotalRecords / result.Size));

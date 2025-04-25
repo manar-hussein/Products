@@ -24,6 +24,6 @@
         public List<ProductImages>? Images { get; set; } = new List<ProductImages>();
         public int Quantity { get; set; }
         public string HeaderImage { get; set; } = null!;
-        public int NumberOfExisitItems { get; set; }
+        public int NumOfSoldItems { get; set; }
     }
 }

@@ -58,7 +58,7 @@
     </div>
     <div class="mb-3 px-3">
         <label for="PaymentMethod" class="form-label fw-bold">Payment Method</label>
-            <select class="form-select" asp-for="PaymentMethod" aria-label="Select Payment Method">
+            <select onchange="ToggleCardInfo(this)" class="form-select" asp-for="PaymentMethod" aria-label="Select Payment Method">
                 <option selected>Open this select menu</option>
                 @foreach(var payment in paymentsSelect)
                 {
@@ -68,6 +68,7 @@
             @* <input asp-for="PaymentMethod" class="form-control" placeholder="@Html.DisplayNameFor(m => m.PaymentMethod)"> *@
             <span asp-validation-for="PaymentMethod" class="form-text text-danger"></span>
         </div>
+    <div id="CardInfo" class="d-none">
         <div class="mb-3 px-3">
             <label for="CardNumber" class="form-label fw-bold">Card Number</label>
             <input asp-for="CardNumber" class="form-control" placeholder="@Html.DisplayNameFor(m => m.CardNumber)">
@@ -83,5 +84,39 @@
             <input asp-for="NameonCard" class="form-control" placeholder="@Html.DisplayNameFor(m => m.NameonCard)">
             <span asp-validation-for="NameonCard" class="form-text text-danger"></span>
         </div>
+        <div class="mb-3 px-3">
+            <label for="CVV" class="form-label fw-bold">CVV</label>
+            <input asp-for="CVV" class="form-control" placeholder="@Html.DisplayNameFor(m => m.CVV)">
+            <span asp-validation-for="CVV" class="form-text text-danger"></span>
+        </div>
+        </div>
     <button type="submit" class="btn btn-dark w-100 m-2 fw-bolder fs-6">Complete Purchase</button>
     </form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+
+    }
+
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script>
+    // Cache the CardInfo element (make sure this matches your HTML element's ID)
+    var CardInfo = $('#CardInfo');
+
+    function ToggleCardInfo(selectElement) {
+        // Get the selected value properly
+        var selectedValue = $(selectElement).val();
+        console.log("Selected value:", selectedValue);
+
+        // Show/hide based on value (using strict equality)
+        if (selectedValue === "Card") {  // Changed from ev.val to selectedValue
+            CardInfo.removeClass("d-none");
+        } else {
+            CardInfo.addClass("d-none");
+        }
+    }
+</script>
