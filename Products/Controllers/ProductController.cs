@@ -13,7 +13,7 @@ namespace Products.Controllers
         {
             _productServices = productServices;
         }
-        public async Task<IActionResult> Index(int size = 4, int index = 1)
+        public async Task<IActionResult> Index(int size = 10, int index = 1)
         {
             var result = await _productServices.ProductsAsync(size, index);
             return View(result);

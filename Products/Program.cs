@@ -10,7 +10,7 @@ namespace Products
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -40,10 +40,36 @@ namespace Products
             builder.Services.AddScoped<FileServices, FileServices>();
             builder.Services.AddScoped<ProductServices, ProductServices>();
             builder.Services.AddScoped<BuyerRepository, BuyerRepository>();
+            builder.Services.AddScoped<DataSeeder, DataSeeder>();
             builder.Services.AddMapster();
             builder.Services.RegisterMapsterConfiguration();
 
             var app = builder.Build();
+
+            //Update Database
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var context = services.GetRequiredService<ApplicationContext>();
+                    // Apply any pending migrations
+                    context.Database.Migrate();
+                    if (!context.Products.Any())
+                    {
+                        var seeder = services.GetRequiredService<DataSeeder>();
+                        await seeder.SeedData();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while seeding the database.");
+                }
+            }
+
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
