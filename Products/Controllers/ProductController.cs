@@ -77,6 +77,12 @@ namespace Products.Controllers
             var result = await _productServices.DelteAsync(id);
             return RedirectToAction("Index", "Saller");
         }
+        [Authorize(Roles = "Saller")]
+        public async Task<IActionResult> GetStatistics()
+        {
+            var products = await _productServices.GetBySallerIdAsync();
+            return View(products);
+        }
 
     }
 }

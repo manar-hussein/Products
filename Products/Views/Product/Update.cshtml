@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_SallerLayout.cshtml";
+    var oldQuantity = Model.Quantity;
 }
 
 <div class="row justify-content-center align-content-center">
@@ -144,4 +145,37 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.slim.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.slim.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+
+    var Quantity = $("#Quantity");
+    var oldQuantity = Quantity.val();
+    console.log(oldQuantity);
+    var NumberOfExisitItems = $("#NumberOfExisitItems");
+    var oldExsistItems =  NumberOfExisitItems.val();
+    console.log(oldExsistItems);
+    Quantity.on('keyup',()=>
+    {
+        if(Quantity.val() > oldQuantity)
+        {
+            NumberOfExisitItems.text = oldExsistItems + Quantity;
+            console.log(NumberOfExisitItems.val());
+            console.log(oldExsistItems);
+        }
+         else if(Quantity.val() < oldQuantity)
+        {
+            NumberOfExisitItems.val = oldExsistItems -Quantity.val();
+            if(NumberOfExisitItems < 0)
+            {
+
+            }
+            console.log(NumberOfExisitItems.val());
+            console.log(oldExsistItems);
+        }
+    })
+</script>
 
